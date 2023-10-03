@@ -1,0 +1,36 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Engine_Graph_App.ViewModels"
+             xmlns:models="clr-namespace:Engine_Graph_App.Models"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Engine_Graph_App.Views.TreeMenuView"
+             x:DataType="viewModels:MainWindowViewModel">
+    
+    <!-- <TreeView ItemsSource="{Binding Ships}"> -->
+    <!--     <TreeView.DataTemplates> -->
+    <!--         <TreeDataTemplate DataType="models:Ship" ItemsSource="{Binding Engines}"> -->
+    <!--             <TextBlock Foreground="Red" Text="{Binding ShipName}" /> -->
+    <!--         </TreeDataTemplate> -->
+    <!--         <DataTemplate DataType="models:Engine"> -->
+    <!--             <TextBlock Text="{Binding EngineName}" /> -->
+    <!--         </DataTemplate>     -->
+    <!--     </TreeView.DataTemplates> -->
+    <!-- </TreeView> -->
+    
+    <TreeView ItemsSource="{Binding Ships}">
+        <TreeView.DataTemplates>
+            <TreeDataTemplate DataType="models:Ship" ItemsSource="{Binding Engines}">
+                <TextBlock Text="{Binding ShipName}" />
+            </TreeDataTemplate>
+            <TreeDataTemplate DataType="models:Engine" ItemsSource="{Binding Cylinders}">
+                <TextBlock Text="{Binding EngineName}" />
+            </TreeDataTemplate>
+            <DataTemplate DataType="models:Cylinder">
+                <CheckBox Content="{Binding CylinderName}"></CheckBox>
+            </DataTemplate>
+        </TreeView.DataTemplates>
+    </TreeView>
+    
+</UserControl>

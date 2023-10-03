@@ -5,6 +5,7 @@
       <map>
         <entry key="Engine_Graph_App/App.axaml" value="Engine_Graph_App/Engine_Graph_App.csproj" />
         <entry key="Engine_Graph_App/Views/MainWindow.axaml" value="Engine_Graph_App/Engine_Graph_App.csproj" />
+        <entry key="Engine_Graph_App/Views/TreeMenuView.axaml" value="Engine_Graph_App/Engine_Graph_App.csproj" />
       </map>
     </option>
   </component>

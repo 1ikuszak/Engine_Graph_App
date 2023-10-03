@@ -15,40 +15,43 @@
 
         public void PopulateDatabaseWithDummyData()
         {
-            var engine1 = new Engine { EngineName = "Engine 1"};
-            var engine2 = new Engine { EngineName = "Engine 2" };
-            
-            var ship1 = new Ship { ShipName = "Ship 1"};
-            var ship2 = new Ship { ShipName = "Ship 2" };
-            
-            var cylinder1 = new Cylinder
+            if (!_db.Ships.Any())
             {
-                Date = DateTime.Now,
-                CylinderName = "A",
-                Pscv = 1.0,
-                TDC = 3.0,
-                Pow = 4.0
-            };
-
-            var cylinder2 = new Cylinder
-            {
-                Date = DateTime.Now,
-                CylinderName = "B",
-                Pscv = 2.0,
-                TDC = 4.0,
-                Pow = 5.0
-            };
+                var engine1 = new Engine { EngineName = "Engine 1"};
+                var engine2 = new Engine { EngineName = "Engine 2" };
             
-            ship1.Engines.Add(engine1);
-            ship2.Engines.Add(engine2);
-            engine1.Cylinders.Add(cylinder1);
-            engine1.Cylinders.Add(cylinder1);
-            engine2.Cylinders.Add(cylinder2);
+                var ship1 = new Ship { ShipName = "Ship 1"};
+                var ship2 = new Ship { ShipName = "Ship 2" };
+            
+                var cylinder1 = new Cylinder
+                {
+                    Date = DateTime.Now,
+                    CylinderName = "A",
+                    Pscv = 1.0,
+                    TDC = 3.0,
+                    Pow = 4.0
+                };
 
-            _db.Ships.AddRange(ship1, ship2);
-            _db.Engines.AddRange(engine1, engine2);
-            _db.Cylinders.AddRange(cylinder1, cylinder2);
-            _db.SaveChanges();
+                var cylinder2 = new Cylinder
+                {
+                    Date = DateTime.Now,
+                    CylinderName = "B",
+                    Pscv = 2.0,
+                    TDC = 4.0,
+                    Pow = 5.0
+                };
+            
+                ship1.Engines.Add(engine1);
+                ship2.Engines.Add(engine2);
+                engine1.Cylinders.Add(cylinder1);
+                engine1.Cylinders.Add(cylinder1);
+                engine2.Cylinders.Add(cylinder2);
+
+                _db.Ships.AddRange(ship1, ship2);
+                _db.Engines.AddRange(engine1, engine2);
+                _db.Cylinders.AddRange(cylinder1, cylinder2);
+                _db.SaveChanges();   
+            }
             
             Console.WriteLine($"Database path: {_db.DbPath}.");
         }
