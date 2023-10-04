@@ -1,48 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using Engine_Graph_App.Models;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Engine_Graph_App.ViewModels;
 
-public class EngineViewModel : INotifyPropertyChanged
+public class EngineViewModel
 {
-    private Engine _engine;
-    private bool _isEngineSelected;
+    public Engine Engine { get; }
+    private bool _isSelected;
+    
+    public event EventHandler<bool> EngineSelectedChanged;
 
     public EngineViewModel(Engine engine)
     {
-        _engine = engine;
+        Engine = engine;
     }
 
-    public string EngineName => _engine.EngineName;
-
-    public bool IsEngineSelected
+    public bool IsSelected
     {
-        get => _isEngineSelected;
+        get => _isSelected;
         set
         {
-            if (_isEngineSelected != value)
+            if (_isSelected != value)
             {
-                _isEngineSelected = value;
-                OnPropertyChanged();
-
-                if (_isEngineSelected) 
-                {
-                    Console.WriteLine($"{_engine.EngineName} is selected");
-                } 
-                else 
-                {
-                    Console.WriteLine($"{_engine.EngineName} unselected");
-                }
+                _isSelected = value;
+                EngineSelectedChanged?.Invoke(this, value);
             }
         }
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+    public IEnumerable<Cylinder> Cylinders => Engine.Cylinders;
 }
+

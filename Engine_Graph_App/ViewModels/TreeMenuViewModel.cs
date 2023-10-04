@@ -21,19 +21,9 @@ public class TreeMenuViewModel:ViewModelBase
         using var db = new AppDatabaseContext();
         var ships = db.Ships
             .Include(ship => ship.Engines)
+            .ThenInclude(engine => engine.Cylinders)
             .ToList();
 
         return ships;
-    }
-
-    public List<Cylinder> GetCylinders()
-    {
-        using var db = new AppDatabaseContext();
-        var cylinders = db.Cylinders
-            .Include(cylinder => cylinder.Engine)
-            .ThenInclude(engine => engine.Ship)
-            .ToList();
-
-        return cylinders;
     }
 }

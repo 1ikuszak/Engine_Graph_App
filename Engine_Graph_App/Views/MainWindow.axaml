@@ -27,8 +27,8 @@
                             <TextBlock Text="{Binding Ship.ShipName}" />
                         </TreeDataTemplate>
                         <DataTemplate DataType="vm:EngineViewModel">
-                            <CheckBox Content="{Binding EngineName}" 
-                                      IsChecked="{Binding IsEngineSelected, Mode=TwoWay}" />
+                            <CheckBox Content="{Binding Engine.EngineName}" 
+                                      IsChecked="{Binding IsSelected, Mode=TwoWay}" />
                         </DataTemplate>
                     </TreeView.DataTemplates>
                 </TreeView>
@@ -39,14 +39,14 @@
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical">
                         <TextBlock HorizontalAlignment="Center">Details</TextBlock>
-                        <ItemsControl ItemsSource="{Binding checkedEngines}">
+                        
+                        <ItemsControl ItemsSource="{Binding SelectedCylinders}">
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="models:Cylinder">
+                                <DataTemplate DataType="vm:CylinderViewModel">
                                     <CheckBox>
                                         <StackPanel Orientation="Horizontal" Spacing="20">
-                                            <TextBlock Text="{Binding Engine.Ship.ShipName}"></TextBlock>
-                                            <TextBlock Text="{Binding Date}"></TextBlock>
-                                            <TextBlock Text="{Binding CylinderName}" />
+                                            <TextBlock Text="{Binding Cylinder.CylinderName}" />
+                                            <TextBlock Text="{Binding Cylinder.Date}" />
                                         </StackPanel>
                                     </CheckBox>
                                 </DataTemplate>

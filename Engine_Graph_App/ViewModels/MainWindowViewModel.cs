@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive;
-using Avalonia.Controls;
-using Avalonia.Interactivity;
 using Engine_Graph_App.Data;
-using Engine_Graph_App.Models;
-using Engine_Graph_App.Views;
-using ReactiveUI;
 
 namespace Engine_Graph_App.ViewModels
 {
@@ -17,19 +9,20 @@ namespace Engine_Graph_App.ViewModels
         private AppDatabaseContext _context;
         private DatabaseInit dbInit;
 
+        public ObservableCollection<CylinderViewModel> SelectedCylinders { get; } = new ObservableCollection<CylinderViewModel>();
+        public ObservableCollection<ShipViewModel> Ships { get; } = new ObservableCollection<ShipViewModel>();
+        public TreeMenuViewModel TreeMenuViewModel { get; }
+        
         public MainWindowViewModel()
         {
-            // DB
             _context = new AppDatabaseContext();
             dbInit = new DatabaseInit(_context);
             dbInit.PopulateDatabaseWithDummyData();
 
-            // Tree Menu
             TreeMenuViewModel = new TreeMenuViewModel(_context);
-            Cylinders = new ObservableCollection<Cylinder>(TreeMenuViewModel.GetCylinders());
             LoadShips();
         }
-        
+
         public void LoadShips()
         {
             var ships = TreeMenuViewModel.GetShipsWithEngines();
@@ -37,15 +30,39 @@ namespace Engine_Graph_App.ViewModels
             {
                 var shipViewModel = new ShipViewModel(ship);
                 Ships.Add(shipViewModel);
+
+                foreach (var engineViewModel in shipViewModel.EngineViewModels)
+                {
+                    engineViewModel.EngineSelectedChanged += HandleEngineSelectionChanged;
+                }
+            }
+
+        }
+
+        private void HandleEngineSelectionChanged(object sender, bool isSelected)
+        {
+            var engineVm = sender as EngineViewModel;
+
+            if (isSelected)
+            {
+                foreach (var cylinder in engineVm.Cylinders)
+                {
+                    SelectedCylinders.Add(new CylinderViewModel(cylinder));
+                }
+            }
+            else
+            {
+                var toRemove = SelectedCylinders
+                    .Where(cv => engineVm.Cylinders.Contains(cv.Cylinder))
+                    .ToList();
+
+                foreach (var item in toRemove)
+                {
+                    SelectedCylinders.Remove(item);
+                }
             }
         }
-        
-        
-        public ObservableCollection<ShipViewModel> Ships { get; private set; } = new ObservableCollection<ShipViewModel>();
-        public ReactiveCommand<object, Unit> CheckBoxCheckedCommand { get; }
-        public ReactiveCommand<object, Unit> CheckBoxUncheckedCommand { get; }
-        public ObservableCollection<Engine> checkedEngines { get; set; } = new ObservableCollection<Engine>();
-        public ObservableCollection<Cylinder> Cylinders { get; }
-        public TreeMenuViewModel TreeMenuViewModel { get; }
     }
+    
 }
+
