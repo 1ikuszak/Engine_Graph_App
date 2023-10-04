@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Engine_Graph_App.Views"
+        xmlns:models="clr-namespace:Engine_Graph_App.Models"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Engine_Graph_App.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -16,9 +17,49 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <views:TreeMenuView/>
-    </StackPanel>
+    <Grid Grid.ColumnDefinitions="Auto, *">
+        <Grid Grid.Column="0" Grid.RowDefinitions="Auto, *"> 
+            <Border Grid.Row="0" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
+                
+                <TreeView ItemsSource="{Binding Ships}">
+                    <TreeView.DataTemplates>
+                        <TreeDataTemplate DataType="vm:ShipViewModel" ItemsSource="{Binding EngineViewModels}">
+                            <TextBlock Text="{Binding Ship.ShipName}" />
+                        </TreeDataTemplate>
+                        <DataTemplate DataType="vm:EngineViewModel">
+                            <CheckBox Content="{Binding EngineName}" 
+                                      IsChecked="{Binding IsEngineSelected, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </TreeView.DataTemplates>
+                </TreeView>
+                
+            </Border>
+            
+            <Border Grid.Row="1" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock HorizontalAlignment="Center">Details</TextBlock>
+                        <ItemsControl ItemsSource="{Binding checkedEngines}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="models:Cylinder">
+                                    <CheckBox>
+                                        <StackPanel Orientation="Horizontal" Spacing="20">
+                                            <TextBlock Text="{Binding Engine.Ship.ShipName}"></TextBlock>
+                                            <TextBlock Text="{Binding Date}"></TextBlock>
+                                            <TextBlock Text="{Binding CylinderName}" />
+                                        </StackPanel>
+                                    </CheckBox>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+    
+    
     
 
 
