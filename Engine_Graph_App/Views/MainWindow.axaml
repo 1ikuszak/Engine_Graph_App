@@ -3,8 +3,6 @@
         xmlns:vm="using:Engine_Graph_App.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:Engine_Graph_App.Views"
-        xmlns:models="clr-namespace:Engine_Graph_App.Models"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Engine_Graph_App.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -12,55 +10,40 @@
         Title="Engine_Graph_App">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
     <Grid Grid.ColumnDefinitions="Auto, *">
         <Grid Grid.Column="0" Grid.RowDefinitions="Auto, *"> 
             <Border Grid.Row="0" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
-                
                 <TreeView ItemsSource="{Binding Ships}">
                     <TreeView.DataTemplates>
                         <TreeDataTemplate DataType="vm:ShipViewModel" ItemsSource="{Binding EngineViewModels}">
-                            <TextBlock Text="{Binding Ship.ShipName}" />
+                            <TextBlock Text="{Binding Ship.Name}" />
                         </TreeDataTemplate>
                         <DataTemplate DataType="vm:EngineViewModel">
-                            <CheckBox Content="{Binding Engine.EngineName}" 
+                            <CheckBox Content="{Binding Engine.Name}" 
                                       IsChecked="{Binding IsSelected, Mode=TwoWay}" />
                         </DataTemplate>
                     </TreeView.DataTemplates>
                 </TreeView>
-                
             </Border>
             
             <Border Grid.Row="1" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
-                <ScrollViewer>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock HorizontalAlignment="Center">Details</TextBlock>
-                        
-                        <ItemsControl ItemsSource="{Binding SelectedCylinders}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="vm:CylinderViewModel">
-                                    <CheckBox>
-                                        <StackPanel Orientation="Horizontal" Spacing="20">
-                                            <TextBlock Text="{Binding Cylinder.CylinderName}" />
-                                            <TextBlock Text="{Binding Cylinder.Date}" />
-                                        </StackPanel>
-                                    </CheckBox>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    
-                    </StackPanel>
-                </ScrollViewer>
+                <Grid>
+                    <DataGrid ItemsSource="{Binding SelectedCylindersMeasurements}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Engine" Binding="{Binding Measurement.Cylinder.Engine.Name}" Width="Auto"/>
+                            <DataGridTextColumn Header="Cylinder" Binding="{Binding Measurement.Cylinder.Name}" Width="Auto"/>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Measurement.Date}" Width="Auto"/>
+                            <DataGridTextColumn Header="Pscv" Binding="{Binding Measurement.Pscv}" Width="Auto"/>
+                            <DataGridTextColumn Header="TDC" Binding="{Binding Measurement.TDC}" Width="Auto"/>
+                            <DataGridTextColumn Header="Pow" Binding="{Binding Measurement.Pow}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </Border>
         </Grid>
     </Grid>
     
-    
-    
-
-
 </Window>

@@ -22,6 +22,7 @@ public class TreeMenuViewModel:ViewModelBase
         var ships = db.Ships
             .Include(ship => ship.Engines)
             .ThenInclude(engine => engine.Cylinders)
+            .ThenInclude(cylinder => cylinder.Measurements)
             .ToList();
 
         return ships;

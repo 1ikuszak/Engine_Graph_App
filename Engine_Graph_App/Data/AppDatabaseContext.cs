@@ -10,6 +10,7 @@ public class AppDatabaseContext:DbContext
     public DbSet<Ship> Ships { get; set; }
     public DbSet<Engine> Engines { get; set; }
     public DbSet<Cylinder> Cylinders { get; set; }
+    public DbSet<Measurement> Measurements { get; set; }
 
     public string DbPath { get; }
 
@@ -17,7 +18,7 @@ public class AppDatabaseContext:DbContext
     {
         var folder = Environment.SpecialFolder.LocalApplicationData;
         var path = Environment.GetFolderPath(folder);
-        DbPath = System.IO.Path.Join(path, "engineGraphee.db");
+        DbPath = System.IO.Path.Join(path, "engineGraph.db");
     }
 
     // The following configures EF to create a Sqlite database file in the

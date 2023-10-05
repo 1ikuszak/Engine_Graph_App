@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Engine_Graph_App.Data;
 
@@ -10,6 +11,7 @@ namespace Engine_Graph_App.ViewModels
         private DatabaseInit dbInit;
 
         public ObservableCollection<CylinderViewModel> SelectedCylinders { get; } = new ObservableCollection<CylinderViewModel>();
+        public ObservableCollection<MeasurementViewModel> SelectedCylindersMeasurements { get; } = new ObservableCollection<MeasurementViewModel>();
         public ObservableCollection<ShipViewModel> Ships { get; } = new ObservableCollection<ShipViewModel>();
         public TreeMenuViewModel TreeMenuViewModel { get; }
         
@@ -18,7 +20,6 @@ namespace Engine_Graph_App.ViewModels
             _context = new AppDatabaseContext();
             dbInit = new DatabaseInit(_context);
             dbInit.PopulateDatabaseWithDummyData();
-
             TreeMenuViewModel = new TreeMenuViewModel(_context);
             LoadShips();
         }
@@ -47,18 +48,21 @@ namespace Engine_Graph_App.ViewModels
             {
                 foreach (var cylinder in engineVm.Cylinders)
                 {
-                    SelectedCylinders.Add(new CylinderViewModel(cylinder));
+                    foreach (var measurement in cylinder.Measurements)
+                    {
+                        SelectedCylindersMeasurements.Add(new MeasurementViewModel(measurement));
+                    }
                 }
             }
             else
             {
-                var toRemove = SelectedCylinders
-                    .Where(cv => engineVm.Cylinders.Contains(cv.Cylinder))
+                var toRemove = SelectedCylindersMeasurements
+                    .Where(mv => engineVm.Cylinders.Any(c => c.Measurements.Contains(mv.Measurement)))
                     .ToList();
 
                 foreach (var item in toRemove)
                 {
-                    SelectedCylinders.Remove(item);
+                    SelectedCylindersMeasurements.Remove(item);
                 }
             }
         }
