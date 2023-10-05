@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Engine_Graph_App.Views;
 
-public partial class CylinderDetailsView : UserControl
+public partial class EngineDetailsView : UserControl
 {
-    public CylinderDetailsView()
+    public EngineDetailsView()
     {
         InitializeComponent();
     }

@@ -3,6 +3,7 @@
         xmlns:vm="using:Engine_Graph_App.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Engine_Graph_App.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Engine_Graph_App.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -30,18 +31,17 @@
             </Border>
             
             <Border Grid.Row="1" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
-                <Grid>
-                    <DataGrid ItemsSource="{Binding SelectedCylindersMeasurements}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Engine" Binding="{Binding Measurement.Cylinder.Engine.Name}" Width="Auto"/>
-                            <DataGridTextColumn Header="Cylinder" Binding="{Binding Measurement.Cylinder.Name}" Width="Auto"/>
-                            <DataGridTextColumn Header="Date" Binding="{Binding Measurement.Date}" Width="Auto"/>
-                            <DataGridTextColumn Header="Pscv" Binding="{Binding Measurement.Pscv}" Width="Auto"/>
-                            <DataGridTextColumn Header="TDC" Binding="{Binding Measurement.TDC}" Width="Auto"/>
-                            <DataGridTextColumn Header="Pow" Binding="{Binding Measurement.Pow}" Width="Auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
+                <ScrollViewer>
+                    <ItemsControl ItemsSource="{Binding EngineDetails}">  <!-- Change from Items to ItemsSource -->
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Expander Header="{Binding EngineName}">
+                                    <ContentControl x:Name="CustomGridContainer" Content="{Binding MainGrid}" />
+                                </Expander>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </Border>
         </Grid>
     </Grid>

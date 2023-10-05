@@ -67,7 +67,7 @@ using System.Linq;
                 
                 var measurement4 = new Measurement
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+1),
                     Pscv = 3.0,
                     TDC = 5.0,
                     Pow = 6.0
@@ -75,7 +75,7 @@ using System.Linq;
                 
                 var measurement5 = new Measurement
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+1),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
@@ -83,7 +83,7 @@ using System.Linq;
                 
                 var measurement6 = new Measurement
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+1),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
@@ -91,7 +91,7 @@ using System.Linq;
                 
                 var measurement7 = new Measurement()
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+2),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
@@ -99,7 +99,7 @@ using System.Linq;
                                 
                 var measurement8 = new Measurement()
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+2),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
@@ -108,7 +108,7 @@ using System.Linq;
                 
                 var measurement9 = new Measurement()
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+2),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
@@ -117,7 +117,7 @@ using System.Linq;
                 
                 var measurement10 = new Measurement()
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+3),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
@@ -126,7 +126,7 @@ using System.Linq;
                 
                 var measurement11 = new Measurement()
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+3),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
@@ -135,7 +135,7 @@ using System.Linq;
                 
                 var measurement12 = new Measurement()
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+3),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
@@ -144,7 +144,7 @@ using System.Linq;
                 
                 var measurement13 = new Measurement()
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+3),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
@@ -153,7 +153,7 @@ using System.Linq;
                 
                 var measurement14 = new Measurement()
                 {
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.AddDays(+3),
                     Pscv = 1.5,
                     TDC = 3.5,
                     Pow = 4.5
