@@ -18,12 +18,17 @@ namespace Engine_Graph_App.ViewModels
         public Grid MainGrid => _mainGrid ??= CreateGrid();
         
         public TableViewModel TableViewModel { get; }
+        public LineGraphViewModel LineGraphViewModel { get; }
+        public ScatterGraphViewModel ScatterGraphViewModel { get; }
+
 
         // Constructor
         public EngineDataSheetViewModel(
             MeasurementViewModel measurementViewModel, 
             ObservableCollection<MeasurementViewModel> selectedCylindersMeasurements, 
-            TableViewModel tableViewModel)
+            TableViewModel tableViewModel,
+            LineGraphViewModel lineGraphViewModel,
+            ScatterGraphViewModel scatterGraphViewModel)
         {
             SelectedCylindersMeasurements = selectedCylindersMeasurements;
             TableViewModel = tableViewModel; // Use passed instance instead of creating new
@@ -134,6 +139,7 @@ namespace Engine_Graph_App.ViewModels
                     if (checkbox.IsChecked == true)
                     {
                         TableViewModel.AddMeasurement(relevantMeasurement);
+
                     }
                     else
                     {

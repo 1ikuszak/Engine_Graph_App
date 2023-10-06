@@ -45,8 +45,15 @@
             </Border>
         </Grid>
         
-        <Grid Grid.Column="1">
-            <views:ContentPresenterView/>
+        <Grid Grid.Column="1" Margin="10">
+            <Grid RowDefinitions="Auto, *">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Table" Command="{Binding ShowTable}"/>
+                    <Button Content="Line" Command="{Binding ShowLineGraph}"/>
+                    <Button Content="Scatter" Command="{Binding ShowScatterGraph}"/>
+                </StackPanel>
+                <views:ContentPresenterView Grid.Row="1"/>
+            </Grid>
         </Grid>
         
     </Grid>
