@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Engine_Graph_App.Data;
+using ReactiveUI;
 
 namespace Engine_Graph_App.ViewModels
 {
@@ -10,10 +11,19 @@ namespace Engine_Graph_App.ViewModels
         private readonly DatabaseInit _dbInit;
         
         public ObservableCollection<ShipViewModel> Ships { get; } = new ObservableCollection<ShipViewModel>();
-        public ObservableCollection<EngineDetailsViewModel> EngineDetails { get; } = new ObservableCollection<EngineDetailsViewModel>();
+        public ObservableCollection<EngineDataSheetViewModel> EngineDataSheets { get; } = new ObservableCollection<EngineDataSheetViewModel>();
 
         public TreeMenuViewModel TreeMenuViewModel { get; }
         public MeasurementViewModel MeasurementViewModel { get; }
+        
+        public TableViewModel SharedTableViewModel { get; } = new TableViewModel();
+        
+        private ViewModelBase _contentToDisplay;
+        public ViewModelBase ContentToDisplay
+        {
+            get => _contentToDisplay;
+            set => this.RaiseAndSetIfChanged(ref _contentToDisplay, value);
+        }
 
         public MainWindowViewModel()
         {
@@ -22,6 +32,8 @@ namespace Engine_Graph_App.ViewModels
             _dbInit.PopulateDatabaseWithDummyData();
             TreeMenuViewModel = new TreeMenuViewModel(_context);
             LoadShips();
+            
+            ContentToDisplay = SharedTableViewModel; // Set ContentToDisplay to SharedTableViewModel
         }
 
         // Load ships and subscribe to engine selection changes
@@ -54,19 +66,26 @@ namespace Engine_Graph_App.ViewModels
                     }
                 }
 
-                var newEngineDetailsViewModel = new EngineDetailsViewModel(MeasurementViewModel, newSelectedCylindersMeasurements)
+                // Pass the shared TableViewModel instance when creating a new EngineDataSheetViewModel
+                var newEngineDetailsViewModel = new EngineDataSheetViewModel(MeasurementViewModel, newSelectedCylindersMeasurements, SharedTableViewModel)
                 {
                     EngineId = engineVm.Engine.EngineId,
                     EngineName = engineVm.Engine.Name
                 };
-                EngineDetails.Add(newEngineDetailsViewModel);
+                EngineDataSheets.Add(newEngineDetailsViewModel);
             }
             else
             {
-                var engineDetailToRemove = EngineDetails.FirstOrDefault(e => e.EngineId == engineVm.Engine.EngineId);
+                var engineDetailToRemove = EngineDataSheets.FirstOrDefault(e => e.EngineId == engineVm.Engine.EngineId);
                 if (engineDetailToRemove != null)
                 {
-                    EngineDetails.Remove(engineDetailToRemove);
+                    // Before removing the engineDetailToRemove from the EngineDataSheets,
+                    // remove all its measurements from the shared TableViewModel
+                    foreach (var measurementVm in engineDetailToRemove.SelectedCylindersMeasurements)
+                    {
+                        SharedTableViewModel.RemoveMeasurement(measurementVm);
+                    }
+                    EngineDataSheets.Remove(engineDetailToRemove);
                 }
             }
         }

@@ -32,7 +32,7 @@
             
             <Border Grid.Row="1" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
                 <ScrollViewer>
-                    <ItemsControl ItemsSource="{Binding EngineDetails}">  <!-- Change from Items to ItemsSource -->
+                    <ItemsControl ItemsSource="{Binding EngineDataSheets}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Expander Header="{Binding EngineName}">
@@ -44,6 +44,11 @@
                 </ScrollViewer>
             </Border>
         </Grid>
+        
+        <Grid Grid.Column="1">
+            <views:ContentPresenterView/>
+        </Grid>
+        
     </Grid>
     
 </Window>

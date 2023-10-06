@@ -6,7 +6,7 @@ using Avalonia.Controls;
 
 namespace Engine_Graph_App.ViewModels
 {
-    public class EngineDetailsViewModel : ViewModelBase
+    public class EngineDataSheetViewModel : ViewModelBase
     {
         // Fields
         private Grid _mainGrid;
@@ -16,11 +16,17 @@ namespace Engine_Graph_App.ViewModels
         public string EngineName { get; set; }
         public int EngineId { get; set; } 
         public Grid MainGrid => _mainGrid ??= CreateGrid();
+        
+        public TableViewModel TableViewModel { get; }
 
         // Constructor
-        public EngineDetailsViewModel(MeasurementViewModel measurementViewModel, ObservableCollection<MeasurementViewModel> selectedCylindersMeasurements)
+        public EngineDataSheetViewModel(
+            MeasurementViewModel measurementViewModel, 
+            ObservableCollection<MeasurementViewModel> selectedCylindersMeasurements, 
+            TableViewModel tableViewModel)
         {
             SelectedCylindersMeasurements = selectedCylindersMeasurements;
+            TableViewModel = tableViewModel; // Use passed instance instead of creating new
         }
         
         // Main grid creation
@@ -97,14 +103,44 @@ namespace Engine_Graph_App.ViewModels
         private void AddMeasurementCheckboxToGrid(Grid grid, DateTime date, string name, int rowIndex, int colIndex)
         {
             var measurement = SelectedCylindersMeasurements.FirstOrDefault(m => m.Measurement.Cylinder.Name == name && m.Measurement.Date.Date == date);
-            var checkbox = new CheckBox
+            if (measurement != null)
             {
-                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                VerticalAlignment =  Avalonia.Layout.VerticalAlignment.Center
-            };
-            Grid.SetColumn(checkbox, colIndex);
-            Grid.SetRow(checkbox, rowIndex);
-            grid.Children.Add(checkbox);
+                var checkbox = new CheckBox
+                {
+                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                    VerticalAlignment =  Avalonia.Layout.VerticalAlignment.Center,
+                    Tag = new Tuple<string, DateTime>(name, date) // Tag to identify cylinder and date
+                };
+                checkbox.IsCheckedChanged += Checkbox_IsCheckedChanged; // Add event handler
+                Grid.SetColumn(checkbox, colIndex);
+                Grid.SetRow(checkbox, rowIndex);
+                grid.Children.Add(checkbox);   
+            }
+        }
+        
+        private void Checkbox_IsCheckedChanged(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var checkbox = sender as CheckBox;
+            var data = checkbox?.Tag as Tuple<string, DateTime>;
+            if (data != null)
+            {
+                var cylinderName = data.Item1;
+                var date = data.Item2;
+        
+                // Fetch the relevant data based on cylinderName and date
+                var relevantMeasurement = SelectedCylindersMeasurements.FirstOrDefault(m => m.Measurement.Cylinder.Name == cylinderName && m.Measurement.Date.Date == date);
+                if (relevantMeasurement != null)
+                {
+                    if (checkbox.IsChecked == true)
+                    {
+                        TableViewModel.AddMeasurement(relevantMeasurement);
+                    }
+                    else
+                    {
+                        TableViewModel.RemoveMeasurement(relevantMeasurement);
+                    }
+                }
+            }
         }
 
         // Utility methods
@@ -112,6 +148,7 @@ namespace Engine_Graph_App.ViewModels
         {
             return SelectedCylindersMeasurements
                 .Select(m => m.Measurement.Cylinder.Name)
+                .Distinct()
                 .OrderBy(name => name)
                 .ToList();
         }

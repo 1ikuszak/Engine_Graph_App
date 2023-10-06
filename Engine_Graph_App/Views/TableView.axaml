@@ -1,0 +1,21 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Engine_Graph_App.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Engine_Graph_App.Views.TableView"
+             x:DataType="viewModels:TableViewModel">
+    
+    <DataGrid ItemsSource="{Binding Measurements}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Id" Binding="{Binding Measurement.Id}"/>
+            <DataGridTextColumn Header="Cylinder" Binding="{Binding Measurement.Cylinder.Name}"/>
+            <DataGridTextColumn Header="Date" Binding="{Binding Measurement.Date}"/>
+            <DataGridTextColumn Header="Pow" Binding="{Binding Measurement.Pow}"/>
+            <DataGridTextColumn Header="Pscv" Binding="{Binding Measurement.Pscv}"/>
+            <DataGridTextColumn Header="TDC" Binding="{Binding Measurement.TDC}"/>
+        </DataGrid.Columns>
+    </DataGrid>
+    
+</UserControl>
