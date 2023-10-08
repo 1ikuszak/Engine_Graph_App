@@ -15,4 +15,5 @@
                              LegendTextSize="12"
                              LegendTextPaint="{Binding LegendTextPaint}"
                              AnimationsSpeed="0:0:0.0" />
+    
 </UserControl>

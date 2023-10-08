@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
@@ -8,22 +9,31 @@ using Avalonia.Media;
 
 namespace Engine_Graph_App.ViewModels
 {
-    public class EngineDataSheetViewModel : ViewModelBase
+    public class EngineDataSheetViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        // Fields
         private Grid _mainGrid;
-
-        // Properties
+       
         public ObservableCollection<MeasurementViewModel> SelectedCylindersMeasurements { get; set; }
         public string EngineName { get; set; }
         public int EngineId { get; set; } 
         public Grid MainGrid => _mainGrid ??= CreateGrid();
-        
         public TableViewModel TableViewModel { get; }
         public LineGraphViewModel LineGraphViewModel { get; }
         public ScatterGraphViewModel ScatterGraphViewModel { get; }
-
-
+        private bool _anyMeasurementChecked;
+        public bool AnyMeasurementChecked
+        {
+            get => _anyMeasurementChecked;
+            set
+            {
+                if (_anyMeasurementChecked != value)
+                {
+                    _anyMeasurementChecked = value;
+                    OnPropertyChanged(nameof(AnyMeasurementChecked));
+                }
+            }
+        }
+        
         // Constructor
         public EngineDataSheetViewModel(
             MeasurementViewModel measurementViewModel, 
@@ -175,6 +185,9 @@ namespace Engine_Graph_App.ViewModels
                     }
                 }
             }
+            
+            // Check if any measurement is checked
+            AnyMeasurementChecked = _mainGrid.Children.OfType<CheckBox>().Any(cb => cb.IsChecked == true);
         }
 
         // Utility methods
@@ -194,6 +207,13 @@ namespace Engine_Graph_App.ViewModels
                 .Distinct()
                 .OrderBy(date => date)
                 .ToList();
+        }
+        
+        // used to expose AnyMeasurementChecked to acess it in MainWindow
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

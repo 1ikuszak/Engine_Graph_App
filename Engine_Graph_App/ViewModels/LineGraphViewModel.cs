@@ -5,7 +5,6 @@ using System.Collections.Specialized;
 using System.Threading.Tasks;
 using LiveChartsCore;
 using LiveChartsCore.Drawing;
-using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using LiveChartsCore.SkiaSharpView.Painting.Effects;
@@ -23,8 +22,10 @@ public class LineGraphViewModel : ViewModelBase
     private Random _rand = new Random();
     
     private static readonly SKColor s_gray = new(195, 195, 195);
-    private static readonly SKColor s_gray1 = new(160, 160, 160);
-    private static readonly SKColor s_gray2 = new(90, 90, 90);
+    private static readonly SKColor s_gray1 = new(240, 240, 240);
+    private static readonly SKColor s_gray2 = new(170, 170, 170);
+    
+    public ISeries[] Series { get; private set; } = Array.Empty<ISeries>();
     
     public SolidColorPaint LegendTextPaint { get; set; } = 
         new SolidColorPaint 
@@ -75,8 +76,7 @@ public class LineGraphViewModel : ViewModelBase
             }, 
         }
     };
-
-
+    
     public ObservableCollection<MeasurementViewModel> SelectedMeasurements
     {
         get => _selectedMeasurements;
@@ -96,9 +96,7 @@ public class LineGraphViewModel : ViewModelBase
             }
         }
     }
-
-    public ISeries[] Series { get; private set; } = Array.Empty<ISeries>();
-
+    
     public LineGraphViewModel()
     {
         _selectedMeasurements = new ObservableCollection<MeasurementViewModel>();

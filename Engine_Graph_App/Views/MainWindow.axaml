@@ -68,6 +68,8 @@
                             <StackPanel Orientation="Horizontal" Spacing="10">
                                 <i:Icon Value="mdi-ferry"/>
                                 <TextBlock Text="{Binding Ship.Name}" />
+                                <i:Icon Value="mdi-circle-outline" Foreground="#0077fa" IsVisible="{Binding HasCheckedEngine}"/>
+
                             </StackPanel>
                         </TreeDataTemplate>
                         <DataTemplate DataType="vm:EngineViewModel">
@@ -88,7 +90,13 @@
                     <ItemsControl ItemsSource="{Binding EngineDataSheets}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Expander Header="{Binding EngineName}" FontSize="12">
+                                <Expander>
+                                    <Expander.Header>
+                                        <StackPanel Orientation="Horizontal" Spacing="10">
+                                            <TextBlock Text="{Binding EngineName}" FontSize="12" Margin="5,0,0,0"/>
+                                            <i:Icon Value="mdi-circle-double" Foreground="#0077fa" IsVisible="{Binding AnyMeasurementChecked}"/>
+                                        </StackPanel>
+                                    </Expander.Header>
                                     <ContentControl x:Name="CustomGridContainer" Content="{Binding MainGrid}" />
                                 </Expander>
                             </DataTemplate>
