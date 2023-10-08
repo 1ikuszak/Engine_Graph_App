@@ -1197,6 +1197,43 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {}
         }
       },
+      "Projektanker.Icons.Avalonia/8.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Projektanker.Icons.Avalonia.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Projektanker.Icons.Avalonia.dll": {}
+        }
+      },
+      "Projektanker.Icons.Avalonia.FontAwesome/8.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Projektanker.Icons.Avalonia": "8.2.0",
+          "System.Text.Json": "7.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Projektanker.Icons.Avalonia.FontAwesome.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Projektanker.Icons.Avalonia.FontAwesome.dll": {}
+        }
+      },
+      "Projektanker.Icons.Avalonia.MaterialDesign/8.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Projektanker.Icons.Avalonia": "8.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Projektanker.Icons.Avalonia.MaterialDesign.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Projektanker.Icons.Avalonia.MaterialDesign.dll": {}
+        }
+      },
       "ReactiveUI/18.3.1": {
         "type": "package",
         "dependencies": {
@@ -1999,7 +2036,7 @@
           }
         }
       },
-      "System.Text.Json/7.0.0": {
+      "System.Text.Json/7.0.3": {
         "type": "package",
         "dependencies": {
           "System.Text.Encodings.Web": "7.0.0"
@@ -3666,6 +3703,45 @@
         "lib/netstandard2.0/Mono.TextTemplating.dll",
         "mono.texttemplating.2.2.1.nupkg.sha512",
         "mono.texttemplating.nuspec"
+      ]
+    },
+    "Projektanker.Icons.Avalonia/8.2.0": {
+      "sha512": "f4WYev80VlQAehLzx9vtibrq+QeZTE2L0E2o18gdbQhi8C5MDaiFaX55GT0sAdGK+ql+omP2Mi/qtUCckiMEqg==",
+      "type": "package",
+      "path": "projektanker.icons.avalonia/8.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/netstandard2.0/Projektanker.Icons.Avalonia.dll",
+        "projektanker.icons.avalonia.8.2.0.nupkg.sha512",
+        "projektanker.icons.avalonia.nuspec"
+      ]
+    },
+    "Projektanker.Icons.Avalonia.FontAwesome/8.2.0": {
+      "sha512": "MgoGAJu579dNNMyAsodyyxaO7dCf4I+W0HOo6rfx9Sk4PH9f2xcQIwewF5I5qUNTGHhK7JOJaenXTUgR3DAQ8w==",
+      "type": "package",
+      "path": "projektanker.icons.avalonia.fontawesome/8.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/netstandard2.0/Projektanker.Icons.Avalonia.FontAwesome.dll",
+        "projektanker.icons.avalonia.fontawesome.8.2.0.nupkg.sha512",
+        "projektanker.icons.avalonia.fontawesome.nuspec"
+      ]
+    },
+    "Projektanker.Icons.Avalonia.MaterialDesign/8.2.0": {
+      "sha512": "X0bvQR6awsuYztn4mdrGgQ+A0vLtFCFO65hZ4C7zE4Vn61NXBSlH2nh7Oe51lh6igrnieLUle8rAqw1hcg0LOg==",
+      "type": "package",
+      "path": "projektanker.icons.avalonia.materialdesign/8.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/netstandard2.0/Projektanker.Icons.Avalonia.MaterialDesign.dll",
+        "projektanker.icons.avalonia.materialdesign.8.2.0.nupkg.sha512",
+        "projektanker.icons.avalonia.materialdesign.nuspec"
       ]
     },
     "ReactiveUI/18.3.1": {
@@ -5825,10 +5901,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/7.0.0": {
-      "sha512": "DaGSsVqKsn/ia6RG8frjwmJonfos0srquhw09TlT8KRw5I43E+4gs+/bZj4K0vShJ5H9imCuXupb4RmS+dBy3w==",
+    "System.Text.Json/7.0.3": {
+      "sha512": "AyjhwXN1zTFeIibHimfJn6eAsZ7rTBib79JQpzg8WAuR/HKDu9JGNHTuu3nbbXQ/bgI+U4z6HtZmCHNXB1QXrQ==",
       "type": "package",
-      "path": "system.text.json/7.0.0",
+      "path": "system.text.json/7.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5891,7 +5967,7 @@
         "lib/net7.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.7.0.0.nupkg.sha512",
+        "system.text.json.7.0.3.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -6098,7 +6174,10 @@
       "Avalonia.Themes.Fluent >= 11.0.2",
       "LiveChartsCore.SkiaSharpView.Avalonia >= 2.0.0-rc1.2",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.11",
-      "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.11"
+      "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.11",
+      "Projektanker.Icons.Avalonia >= 8.2.0",
+      "Projektanker.Icons.Avalonia.FontAwesome >= 8.2.0",
+      "Projektanker.Icons.Avalonia.MaterialDesign >= 8.2.0"
     ]
   },
   "packageFolders": {
@@ -6187,6 +6266,18 @@
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
             "version": "[7.0.11, )"
+          },
+          "Projektanker.Icons.Avalonia": {
+            "target": "Package",
+            "version": "[8.2.0, )"
+          },
+          "Projektanker.Icons.Avalonia.FontAwesome": {
+            "target": "Package",
+            "version": "[8.2.0, )"
+          },
+          "Projektanker.Icons.Avalonia.MaterialDesign": {
+            "target": "Package",
+            "version": "[8.2.0, )"
           }
         },
         "imports": [

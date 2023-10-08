@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Engine_Graph_App.Views"
+        xmlns:i="https://github.com/projektanker/icons.avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Engine_Graph_App.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -16,15 +17,74 @@
     
     <Grid Grid.ColumnDefinitions="Auto, *">
         <Grid Grid.Column="0" Grid.RowDefinitions="Auto, *"> 
-            <Border Grid.Row="0" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
-                <TreeView ItemsSource="{Binding Ships}">
+                        <Border Grid.Row="0" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
+                <TreeView ItemsSource="{Binding Ships}" FontSize="14">
+                    <!-- Add custom styles for the TreeView -->
+
+                    <TreeView.Styles>
+                        <Style Selector="TreeViewItem">
+                            
+                            <Setter Property="Padding" Value="0"/>
+                            
+                            <!--  PointerOver state  -->
+                            <Style Selector="^ /template/ Border#PART_LayoutRoot:pointerover">
+                               <Setter Property="Background" Value="Transparent" />
+                               <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>           
+
+                            <!--  Pressed state  -->
+                            <Style Selector="^:pressed /template/ Border#PART_LayoutRoot:pointerover">
+                               <Setter Property="Background" Value="Transparent" />
+                               <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>
+                            
+                            <!--  Disabled state  -->
+                            <Style Selector="^:disabled /template/ Border#PART_LayoutRoot">
+                               <Setter Property="Background" Value="Transparent" />
+                               <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>
+                            
+                            <!--  Selected state  -->
+                            <Style Selector="^:selected /template/ Border#PART_LayoutRoot">
+                               <Setter Property="Background" Value="Transparent" />
+                               <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>
+                            
+                            <!--  Selected PointerOver state  -->
+                            <Style Selector="^:selected /template/ Border#PART_LayoutRoot:pointerover">
+                               <Setter Property="Background" Value="Transparent" />
+                               <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>
+                            
+                            <!--  Selected Pressed state  -->
+                            <Style Selector="^:pressed:selected /template/ Border#PART_LayoutRoot:pointerover">
+                               <Setter Property="Background" Value="Transparent" />
+                               <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>
+                            
+                            <!--  Disabled Selected state  -->
+                            <Style Selector="^:disabled:selected /template/ Border#PART_LayoutRoot">
+                               <Setter Property="Background" Value="Transparent" />
+                               <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>            
+
+                         </Style>
+                      </TreeView.Styles>
+                    
                     <TreeView.DataTemplates>
                         <TreeDataTemplate DataType="vm:ShipViewModel" ItemsSource="{Binding EngineViewModels}">
-                            <TextBlock Text="{Binding Ship.Name}" />
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <i:Icon Value="mdi-ferry"/>
+                                <TextBlock Text="{Binding Ship.Name}" />
+                            </StackPanel>
                         </TreeDataTemplate>
                         <DataTemplate DataType="vm:EngineViewModel">
-                            <CheckBox Content="{Binding Engine.Name}" 
-                                      IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <i:Icon Value="mdi-engine"/>
+                                <CheckBox Content="{Binding Engine.Name}" 
+                                          IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                          FontSize="14" />
+                            </StackPanel>
                         </DataTemplate>
                     </TreeView.DataTemplates>
                 </TreeView>
@@ -45,12 +105,27 @@
             </Border>
         </Grid>
         
-        <Grid Grid.Column="1" Margin="10">
+        <Grid Grid.Column="1" Margin="14, 8">
             <Grid RowDefinitions="Auto, *">
                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="Table" Command="{Binding ShowTable}"/>
-                    <Button Content="Line" Command="{Binding ShowLineGraph}"/>
-                    <Button Content="Scatter" Command="{Binding ShowScatterGraph}"/>
+                    <Button Command="{Binding ShowTable}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <i:Icon Value="mdi-table"/>
+                            <TextBlock Text="Table View"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding ShowLineGraph}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <i:Icon Value="mdi-chart-bell-curve"/>
+                            <TextBlock Text="Line Graph"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding ShowScatterGraph}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <i:Icon Value="mdi-chart-scatter-plot"/>
+                            <TextBlock Text="Scatter Graph"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
                 <views:ContentPresenterView Grid.Row="1"/>
             </Grid>

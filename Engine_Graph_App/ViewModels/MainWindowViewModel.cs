@@ -104,6 +104,7 @@ namespace Engine_Graph_App.ViewModels
                     foreach (var measurementVm in engineDetailToRemove.SelectedCylindersMeasurements)
                     {
                         SharedTableViewModel.RemoveMeasurement(measurementVm);
+                        LineGraphViewModel.RemoveMeasurement(measurementVm); // Also remove from LineGraphViewModel
                     }
                     EngineDataSheets.Remove(engineDetailToRemove);
                     // After removing, check if no engines are selected, if so, set to default view

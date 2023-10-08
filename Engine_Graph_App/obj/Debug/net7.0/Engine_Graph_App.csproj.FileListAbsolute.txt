@@ -184,3 +184,6 @@ D:\code\c#\Engine_Graph_App\Engine_Graph_App\bin\Debug\net7.0\LiveChartsCore.dll
 D:\code\c#\Engine_Graph_App\Engine_Graph_App\bin\Debug\net7.0\LiveChartsCore.SkiaSharpView.dll
 D:\code\c#\Engine_Graph_App\Engine_Graph_App\bin\Debug\net7.0\LiveChartsCore.SkiaSharpView.Avalonia.dll
 D:\code\c#\Engine_Graph_App\Engine_Graph_App\bin\Debug\net7.0\SkiaSharp.HarfBuzz.dll
+D:\code\c#\Engine_Graph_App\Engine_Graph_App\bin\Debug\net7.0\Projektanker.Icons.Avalonia.dll
+D:\code\c#\Engine_Graph_App\Engine_Graph_App\bin\Debug\net7.0\Projektanker.Icons.Avalonia.FontAwesome.dll
+D:\code\c#\Engine_Graph_App\Engine_Graph_App\bin\Debug\net7.0\Projektanker.Icons.Avalonia.MaterialDesign.dll

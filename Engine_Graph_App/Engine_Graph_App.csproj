@@ -28,5 +28,13 @@
           <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.11" />
+        <PackageReference Include="Projektanker.Icons.Avalonia" Version="8.2.0" />
+        <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="8.2.0" />
+        <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="8.2.0" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Folder Include="Styles\" />
     </ItemGroup>
 </Project>

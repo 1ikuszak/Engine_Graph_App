@@ -8,6 +8,11 @@
              x:Class="Engine_Graph_App.Views.LineGraphView"
              x:DataType="viewModels:LineGraphViewModel">
 
-    <avalonia:CartesianChart Series="{Binding Series}" ZoomMode="X"/>
-    
+    <avalonia:CartesianChart Series="{Binding Series}" ZoomMode="X"
+                             XAxes="{Binding XAxes}"
+                             YAxes="{Binding YAxes}"
+                             LegendPosition="Bottom"
+                             LegendTextSize="12"
+                             LegendTextPaint="{Binding LegendTextPaint}"
+                             AnimationsSpeed="0:0:0.0" />
 </UserControl>

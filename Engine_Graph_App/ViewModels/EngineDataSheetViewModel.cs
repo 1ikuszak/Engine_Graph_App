@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Media;
 
 namespace Engine_Graph_App.ViewModels
 {
@@ -32,6 +34,8 @@ namespace Engine_Graph_App.ViewModels
         {
             SelectedCylindersMeasurements = selectedCylindersMeasurements;
             TableViewModel = tableViewModel; // Use passed instance instead of creating new
+            LineGraphViewModel = lineGraphViewModel;
+            ScatterGraphViewModel = scatterGraphViewModel;
         }
         
         // Main grid creation
@@ -73,7 +77,15 @@ namespace Engine_Graph_App.ViewModels
             int colIndex = 1;
             foreach (var name in GetUniqueCylinderNames())
             {
-                var cylinderTextBlock = new Button { Content = name };
+                var cylinderTextBlock = new Button
+                {
+                    Content = name,
+                    HorizontalContentAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                    VerticalContentAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                    FontSize = 12,
+                    Width = 22,
+                    Padding = new Thickness(2, 3),
+                };
                 Grid.SetColumn(cylinderTextBlock, colIndex++);
                 Grid.SetRow(cylinderTextBlock, 0);
                 grid.Children.Add(cylinderTextBlock);
@@ -99,7 +111,17 @@ namespace Engine_Graph_App.ViewModels
 
         private void AddDateLabelToGrid(Grid grid, DateTime date, int rowIndex)
         {
-            var dateLabel = new Button { Content = date.ToShortDateString() };
+            var dateLabel = new Button
+            {
+                Content = date.ToShortDateString(),
+                HorizontalContentAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                VerticalContentAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                FontSize = 12,
+                Width = 86,
+                Padding = new Thickness(3),
+                FontFamily = new Avalonia.Media.FontFamily("Courier New"),
+                FontWeight = FontWeight.Bold,
+            };
             Grid.SetColumn(dateLabel, 0);
             Grid.SetRow(dateLabel, rowIndex);
             grid.Children.Add(dateLabel);
@@ -114,12 +136,15 @@ namespace Engine_Graph_App.ViewModels
                 {
                     HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
                     VerticalAlignment =  Avalonia.Layout.VerticalAlignment.Center,
-                    Tag = new Tuple<string, DateTime>(name, date) // Tag to identify cylinder and date
+                    Tag = new Tuple<string, DateTime>(name, date), // Tag to identify cylinder and date,
+                    FontSize = 12,
+                    Padding = new Thickness(0),
+                    Margin = new Thickness(2, -6)  // Set margin to 0
                 };
                 checkbox.IsCheckedChanged += Checkbox_IsCheckedChanged; // Add event handler
                 Grid.SetColumn(checkbox, colIndex);
                 Grid.SetRow(checkbox, rowIndex);
-                grid.Children.Add(checkbox);   
+                grid.Children.Add(checkbox);  
             }
         }
         
@@ -139,11 +164,14 @@ namespace Engine_Graph_App.ViewModels
                     if (checkbox.IsChecked == true)
                     {
                         TableViewModel.AddMeasurement(relevantMeasurement);
-
+                        LineGraphViewModel.AddMeasurement(relevantMeasurement); 
+                        ScatterGraphViewModel.AddMeasurement(relevantMeasurement);
                     }
                     else
                     {
                         TableViewModel.RemoveMeasurement(relevantMeasurement);
+                        LineGraphViewModel.RemoveMeasurement(relevantMeasurement); 
+                        ScatterGraphViewModel.RemoveMeasurement(relevantMeasurement);
                     }
                 }
             }

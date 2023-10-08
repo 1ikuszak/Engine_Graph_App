@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Fw0I7djqcTwcBwFmBYrDy5M3lZbTK6Whbo10sifzMqLwncxKPEAIm6XRm5cs5+tKTNiF57ZkROHD+iVlvJkyYg==",
+  "dgSpecHash": "ernCetclIuTF8jlKqI2VR+JhYDF02Q5YzGDOhuvilqufvRizai70v5jkZh/AB6/HbjhHkfl+zJLgW0vl/krCVg==",
   "success": true,
   "projectFilePath": "D:\\code\\c#\\Engine_Graph_App\\Engine_Graph_App\\Engine_Graph_App.csproj",
   "expectedPackageFiles": [
@@ -61,6 +61,9 @@
     "C:\\Users\\48517\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\48517\\.nuget\\packages\\projektanker.icons.avalonia\\8.2.0\\projektanker.icons.avalonia.8.2.0.nupkg.sha512",
+    "C:\\Users\\48517\\.nuget\\packages\\projektanker.icons.avalonia.fontawesome\\8.2.0\\projektanker.icons.avalonia.fontawesome.8.2.0.nupkg.sha512",
+    "C:\\Users\\48517\\.nuget\\packages\\projektanker.icons.avalonia.materialdesign\\8.2.0\\projektanker.icons.avalonia.materialdesign.8.2.0.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\reactiveui\\18.3.1\\reactiveui.18.3.1.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\skiasharp\\2.88.6\\skiasharp.2.88.6.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\skiasharp.harfbuzz\\2.88.6\\skiasharp.harfbuzz.2.88.6.nupkg.sha512",
@@ -106,7 +109,7 @@
     "C:\\Users\\48517\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\48517\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
+    "C:\\Users\\48517\\.nuget\\packages\\system.text.json\\7.0.3\\system.text.json.7.0.3.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",

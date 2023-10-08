@@ -18,6 +18,9 @@ build_property.ProjectDir = D:\code\c#\Engine_Graph_App\Engine_Graph_App\
 [D:/code/c\#/Engine_Graph_App/Engine_Graph_App/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[D:/code/c\#/Engine_Graph_App/Engine_Graph_App/Icons.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [D:/code/c\#/Engine_Graph_App/Engine_Graph_App/Views/ContentPresenterView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
