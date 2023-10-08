@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ernCetclIuTF8jlKqI2VR+JhYDF02Q5YzGDOhuvilqufvRizai70v5jkZh/AB6/HbjhHkfl+zJLgW0vl/krCVg==",
+  "dgSpecHash": "771rps3T2BA5XTuCyYsy83U2beebCn0ADMfmxBo8EnLnQ74gUPFHEOY2VPadZmqTEF/hXhc5NblG6rI/g0MTTg==",
   "success": true,
   "projectFilePath": "D:\\code\\c#\\Engine_Graph_App\\Engine_Graph_App\\Engine_Graph_App.csproj",
   "expectedPackageFiles": [
@@ -65,6 +65,10 @@
     "C:\\Users\\48517\\.nuget\\packages\\projektanker.icons.avalonia.fontawesome\\8.2.0\\projektanker.icons.avalonia.fontawesome.8.2.0.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\projektanker.icons.avalonia.materialdesign\\8.2.0\\projektanker.icons.avalonia.materialdesign.8.2.0.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\reactiveui\\18.3.1\\reactiveui.18.3.1.nupkg.sha512",
+    "C:\\Users\\48517\\.nuget\\packages\\semi.avalonia\\11.0.1\\semi.avalonia.11.0.1.nupkg.sha512",
+    "C:\\Users\\48517\\.nuget\\packages\\semi.avalonia.colorpicker\\11.0.1\\semi.avalonia.colorpicker.11.0.1.nupkg.sha512",
+    "C:\\Users\\48517\\.nuget\\packages\\semi.avalonia.datagrid\\11.0.1\\semi.avalonia.datagrid.11.0.1.nupkg.sha512",
+    "C:\\Users\\48517\\.nuget\\packages\\semi.avalonia.treedatagrid\\11.0.1\\semi.avalonia.treedatagrid.11.0.1.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\skiasharp\\2.88.6\\skiasharp.2.88.6.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\skiasharp.harfbuzz\\2.88.6\\skiasharp.harfbuzz.2.88.6.nupkg.sha512",
     "C:\\Users\\48517\\.nuget\\packages\\skiasharp.nativeassets.linux\\2.88.3\\skiasharp.nativeassets.linux.2.88.3.nupkg.sha512",

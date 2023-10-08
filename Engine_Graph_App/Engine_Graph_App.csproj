@@ -31,6 +31,10 @@
         <PackageReference Include="Projektanker.Icons.Avalonia" Version="8.2.0" />
         <PackageReference Include="Projektanker.Icons.Avalonia.FontAwesome" Version="8.2.0" />
         <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="8.2.0" />
+        <PackageReference Include="Semi.Avalonia" Version="11.0.1" />
+        <PackageReference Include="Semi.Avalonia.ColorPicker" Version="11.0.1" />
+        <PackageReference Include="Semi.Avalonia.DataGrid" Version="11.0.1" />
+        <PackageReference Include="Semi.Avalonia.TreeDataGrid" Version="11.0.1" />
     </ItemGroup>
 
 

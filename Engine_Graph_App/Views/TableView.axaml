@@ -7,7 +7,7 @@
              x:Class="Engine_Graph_App.Views.TableView"
              x:DataType="viewModels:TableViewModel">
     
-    <DataGrid ItemsSource="{Binding Measurements}">
+    <DataGrid ItemsSource="{Binding Measurements}" Margin="0,8,0,0">
         <DataGrid.Columns>
             <DataGridTextColumn Header="Id" Binding="{Binding Measurement.Id}"/>
             <DataGridTextColumn Header="Cylinder" Binding="{Binding Measurement.Cylinder.Name}"/>

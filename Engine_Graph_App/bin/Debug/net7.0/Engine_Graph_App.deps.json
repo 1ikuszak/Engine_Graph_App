@@ -20,7 +20,11 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.11",
           "Projektanker.Icons.Avalonia": "8.2.0",
           "Projektanker.Icons.Avalonia.FontAwesome": "8.2.0",
-          "Projektanker.Icons.Avalonia.MaterialDesign": "8.2.0"
+          "Projektanker.Icons.Avalonia.MaterialDesign": "8.2.0",
+          "Semi.Avalonia": "11.0.1",
+          "Semi.Avalonia.ColorPicker": "11.0.1",
+          "Semi.Avalonia.DataGrid": "11.0.1",
+          "Semi.Avalonia.TreeDataGrid": "11.0.1"
         },
         "runtime": {
           "Engine_Graph_App.dll": {}
@@ -920,6 +924,52 @@
           "lib/net6.0/ReactiveUI.dll": {
             "assemblyVersion": "18.3.0.0",
             "fileVersion": "18.3.1.49589"
+          }
+        }
+      },
+      "Semi.Avalonia/11.0.1": {
+        "dependencies": {
+          "Avalonia": "11.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/Semi.Avalonia.dll": {
+            "assemblyVersion": "11.0.1.0",
+            "fileVersion": "11.0.1.0"
+          }
+        }
+      },
+      "Semi.Avalonia.ColorPicker/11.0.1": {
+        "dependencies": {
+          "Avalonia": "11.0.2",
+          "Avalonia.Controls.ColorPicker": "11.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/Semi.Avalonia.ColorPicker.dll": {
+            "assemblyVersion": "11.0.1.0",
+            "fileVersion": "11.0.1.0"
+          }
+        }
+      },
+      "Semi.Avalonia.DataGrid/11.0.1": {
+        "dependencies": {
+          "Avalonia": "11.0.2",
+          "Avalonia.Controls.DataGrid": "11.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/Semi.Avalonia.DataGrid.dll": {
+            "assemblyVersion": "11.0.1.0",
+            "fileVersion": "11.0.1.0"
+          }
+        }
+      },
+      "Semi.Avalonia.TreeDataGrid/11.0.1": {
+        "dependencies": {
+          "Avalonia.Controls.TreeDataGrid": "11.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Semi.Avalonia.TreeDataGrid.dll": {
+            "assemblyVersion": "11.0.1.0",
+            "fileVersion": "11.0.1.0"
           }
         }
       },
@@ -1877,6 +1927,34 @@
       "sha512": "sha512-0tclGtjrRPfA2gbjiM7O3DeNmo6/TpDn7CMN6jgzDrbgrnysM7oEzjGEeXbtXaOxH6kEf6RiMKWobZoSgbBXhQ==",
       "path": "reactiveui/18.3.1",
       "hashPath": "reactiveui.18.3.1.nupkg.sha512"
+    },
+    "Semi.Avalonia/11.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iswElH/UtuJq9C2p6W1xiKbt0cPMm/TdukbMKAKIhYMaFwPDxv/+yNSanOkbKF/cY84jYd9lp+cFufh9vmN5UQ==",
+      "path": "semi.avalonia/11.0.1",
+      "hashPath": "semi.avalonia.11.0.1.nupkg.sha512"
+    },
+    "Semi.Avalonia.ColorPicker/11.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3WeZStivAJaJjPTnUfD+GV0WRBAiTA9x2VbaWlxgVoL5xiwPT1TZoR2h0M0cMOqZi5ubePgkH2w1dWOLngxGWw==",
+      "path": "semi.avalonia.colorpicker/11.0.1",
+      "hashPath": "semi.avalonia.colorpicker.11.0.1.nupkg.sha512"
+    },
+    "Semi.Avalonia.DataGrid/11.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2305uCfZtcj6VsfqFrRpvytMHBb6wlHl/7Zq6QgPqxJHxYqKxE1Vhtr95EUXEEne9agEclhdYrECJiWAQKvzWg==",
+      "path": "semi.avalonia.datagrid/11.0.1",
+      "hashPath": "semi.avalonia.datagrid.11.0.1.nupkg.sha512"
+    },
+    "Semi.Avalonia.TreeDataGrid/11.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gQHlNirt5ZpOjlii7BIcs1vIijd5WWoQpRh5DWRMszrXZOdGlcmKn1R717GeqRcr7smTnV8l1e+bAYpI4pP5XA==",
+      "path": "semi.avalonia.treedatagrid/11.0.1",
+      "hashPath": "semi.avalonia.treedatagrid.11.0.1.nupkg.sha512"
     },
     "SkiaSharp/2.88.6": {
       "type": "package",

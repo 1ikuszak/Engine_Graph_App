@@ -15,61 +15,53 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <Grid Grid.ColumnDefinitions="Auto, *">
-        <Grid Grid.Column="0" Grid.RowDefinitions="Auto, *"> 
-                        <Border Grid.Row="0" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
+    <Grid ColumnDefinitions="300, *">
+        <Grid Grid.Column="0" RowDefinitions="Auto, *"> 
+            
+            <Panel Grid.Row="0" Margin="10">
                 <TreeView ItemsSource="{Binding Ships}" FontSize="14">
-                    <!-- Add custom styles for the TreeView -->
-
+                    
                     <TreeView.Styles>
                         <Style Selector="TreeViewItem">
-                            
-                            <Setter Property="Padding" Value="0"/>
-                            
                             <!--  PointerOver state  -->
                             <Style Selector="^ /template/ Border#PART_LayoutRoot:pointerover">
                                <Setter Property="Background" Value="Transparent" />
                                <Setter Property="BorderBrush" Value="Transparent" />
                             </Style>           
-
                             <!--  Pressed state  -->
                             <Style Selector="^:pressed /template/ Border#PART_LayoutRoot:pointerover">
                                <Setter Property="Background" Value="Transparent" />
                                <Setter Property="BorderBrush" Value="Transparent" />
                             </Style>
-                            
                             <!--  Disabled state  -->
                             <Style Selector="^:disabled /template/ Border#PART_LayoutRoot">
                                <Setter Property="Background" Value="Transparent" />
                                <Setter Property="BorderBrush" Value="Transparent" />
                             </Style>
-                            
                             <!--  Selected state  -->
                             <Style Selector="^:selected /template/ Border#PART_LayoutRoot">
                                <Setter Property="Background" Value="Transparent" />
                                <Setter Property="BorderBrush" Value="Transparent" />
                             </Style>
-                            
                             <!--  Selected PointerOver state  -->
                             <Style Selector="^:selected /template/ Border#PART_LayoutRoot:pointerover">
                                <Setter Property="Background" Value="Transparent" />
                                <Setter Property="BorderBrush" Value="Transparent" />
                             </Style>
-                            
                             <!--  Selected Pressed state  -->
                             <Style Selector="^:pressed:selected /template/ Border#PART_LayoutRoot:pointerover">
                                <Setter Property="Background" Value="Transparent" />
                                <Setter Property="BorderBrush" Value="Transparent" />
                             </Style>
-                            
                             <!--  Disabled Selected state  -->
                             <Style Selector="^:disabled:selected /template/ Border#PART_LayoutRoot">
                                <Setter Property="Background" Value="Transparent" />
                                <Setter Property="BorderBrush" Value="Transparent" />
-                            </Style>            
-
+                            </Style>
+                            
                          </Style>
                       </TreeView.Styles>
+                    
                     
                     <TreeView.DataTemplates>
                         <TreeDataTemplate DataType="vm:ShipViewModel" ItemsSource="{Binding EngineViewModels}">
@@ -79,30 +71,32 @@
                             </StackPanel>
                         </TreeDataTemplate>
                         <DataTemplate DataType="vm:EngineViewModel">
-                            <StackPanel Orientation="Horizontal" Spacing="10">
+                            <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,-8">
                                 <i:Icon Value="mdi-engine"/>
                                 <CheckBox Content="{Binding Engine.Name}" 
                                           IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                          FontSize="14" />
+                                          FontSize="14"/>
                             </StackPanel>
                         </DataTemplate>
                     </TreeView.DataTemplates>
+                    
                 </TreeView>
-            </Border>
+            </Panel>
             
-            <Border Grid.Row="1" BorderBrush="rgba(0,0,0,0.1)" BorderThickness="1" Padding="10">
+            <Panel Grid.Row="1" Margin="10">
                 <ScrollViewer>
                     <ItemsControl ItemsSource="{Binding EngineDataSheets}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Expander Header="{Binding EngineName}">
+                                <Expander Header="{Binding EngineName}" FontSize="12">
                                     <ContentControl x:Name="CustomGridContainer" Content="{Binding MainGrid}" />
                                 </Expander>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
-            </Border>
+            </Panel>
+            
         </Grid>
         
         <Grid Grid.Column="1" Margin="14, 8">

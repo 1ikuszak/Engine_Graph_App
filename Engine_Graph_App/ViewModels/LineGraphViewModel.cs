@@ -29,7 +29,7 @@ public class LineGraphViewModel : ViewModelBase
     public SolidColorPaint LegendTextPaint { get; set; } = 
         new SolidColorPaint 
         { 
-            Color = new SKColor(50, 50, 50), 
+            Color = new SKColor(50, 50, 50),
         }; 
     
     public Axis[] XAxes { get; set; } =
