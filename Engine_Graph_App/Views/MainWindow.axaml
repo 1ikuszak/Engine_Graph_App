@@ -16,76 +16,13 @@
     </Design.DataContext>
     
     <Grid ColumnDefinitions="300, *">
-        <Grid Grid.Column="0" RowDefinitions="Auto, *"> 
-            
-            <Panel Grid.Row="0" Margin="10">
-                <TreeView ItemsSource="{Binding Ships}" FontSize="14">
-                    
-                    <TreeView.Styles>
-                        <Style Selector="TreeViewItem">
-                            <!--  PointerOver state  -->
-                            <Style Selector="^ /template/ Border#PART_LayoutRoot:pointerover">
-                               <Setter Property="Background" Value="Transparent" />
-                               <Setter Property="BorderBrush" Value="Transparent" />
-                            </Style>           
-                            <!--  Pressed state  -->
-                            <Style Selector="^:pressed /template/ Border#PART_LayoutRoot:pointerover">
-                               <Setter Property="Background" Value="Transparent" />
-                               <Setter Property="BorderBrush" Value="Transparent" />
-                            </Style>
-                            <!--  Disabled state  -->
-                            <Style Selector="^:disabled /template/ Border#PART_LayoutRoot">
-                               <Setter Property="Background" Value="Transparent" />
-                               <Setter Property="BorderBrush" Value="Transparent" />
-                            </Style>
-                            <!--  Selected state  -->
-                            <Style Selector="^:selected /template/ Border#PART_LayoutRoot">
-                               <Setter Property="Background" Value="Transparent" />
-                               <Setter Property="BorderBrush" Value="Transparent" />
-                            </Style>
-                            <!--  Selected PointerOver state  -->
-                            <Style Selector="^:selected /template/ Border#PART_LayoutRoot:pointerover">
-                               <Setter Property="Background" Value="Transparent" />
-                               <Setter Property="BorderBrush" Value="Transparent" />
-                            </Style>
-                            <!--  Selected Pressed state  -->
-                            <Style Selector="^:pressed:selected /template/ Border#PART_LayoutRoot:pointerover">
-                               <Setter Property="Background" Value="Transparent" />
-                               <Setter Property="BorderBrush" Value="Transparent" />
-                            </Style>
-                            <!--  Disabled Selected state  -->
-                            <Style Selector="^:disabled:selected /template/ Border#PART_LayoutRoot">
-                               <Setter Property="Background" Value="Transparent" />
-                               <Setter Property="BorderBrush" Value="Transparent" />
-                            </Style>
-                            
-                         </Style>
-                      </TreeView.Styles>
-                    
-                    
-                    <TreeView.DataTemplates>
-                        <TreeDataTemplate DataType="vm:ShipViewModel" ItemsSource="{Binding EngineViewModels}">
-                            <StackPanel Orientation="Horizontal" Spacing="10">
-                                <i:Icon Value="mdi-ferry"/>
-                                <TextBlock Text="{Binding Ship.Name}" />
-                                <i:Icon Value="mdi-circle-outline" Foreground="#0077fa" IsVisible="{Binding HasCheckedEngine}"/>
+        <Grid Grid.Column="0" RowDefinitions="Auto, Auto, *">
 
-                            </StackPanel>
-                        </TreeDataTemplate>
-                        <DataTemplate DataType="vm:EngineViewModel">
-                            <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,-8">
-                                <i:Icon Value="mdi-engine"/>
-                                <CheckBox Content="{Binding Engine.Name}" 
-                                          IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                          FontSize="14"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </TreeView.DataTemplates>
-                    
-                </TreeView>
+            <Panel Grid.Row="1">
+                <views:TreeMenuView Grid.Row="1" Margin="10" DataContext="{Binding TreeMenuViewModel}"/>
             </Panel>
             
-            <Panel Grid.Row="1" Margin="10">
+            <Panel Grid.Row="2" Margin="10">
                 <ScrollViewer>
                     <ItemsControl ItemsSource="{Binding EngineDataSheets}">
                         <ItemsControl.ItemTemplate>
@@ -104,7 +41,6 @@
                     </ItemsControl>
                 </ScrollViewer>
             </Panel>
-            
         </Grid>
         
         <Grid Grid.Column="1" Margin="14, 8">
@@ -132,7 +68,6 @@
                 <views:ContentPresenterView Grid.Row="1"/>
             </Grid>
         </Grid>
-        
     </Grid>
     
 </Window>

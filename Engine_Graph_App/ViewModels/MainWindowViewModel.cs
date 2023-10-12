@@ -1,64 +1,79 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using DynamicData;
 using Engine_Graph_App.Data;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ReactiveUI;
 
 namespace Engine_Graph_App.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        // DB
         private readonly AppDatabaseContext _context;
         private readonly DatabaseInit _dbInit;
+        public DataAccessRepository DataAccessRepository { get; }
         
+        // Collections
+        public ObservableCollection<object> TreeViewData { get; } = new ObservableCollection<object>();
         public ObservableCollection<ShipViewModel> Ships { get; } = new ObservableCollection<ShipViewModel>();
+        private List<EngineViewModel> _engines;
+        public List<EngineViewModel> Engines
+        {
+            get => _engines;
+            set => this.RaiseAndSetIfChanged(ref _engines, value); 
+        }        
+        
         public ObservableCollection<EngineDataSheetViewModel> EngineDataSheets { get; } = new ObservableCollection<EngineDataSheetViewModel>();
-
+        
+        // ViewModels
         public TreeMenuViewModel TreeMenuViewModel { get; }
         public MeasurementViewModel MeasurementViewModel { get; }
-        
         public TableViewModel SharedTableViewModel { get; } = new TableViewModel();
         public DefaultViewModel DefaultViewModel { get; } = new DefaultViewModel();
-
         public LineGraphViewModel LineGraphViewModel { get; } = new LineGraphViewModel();
         public ScatterGraphViewModel ScatterGraphViewModel { get; } = new ScatterGraphViewModel();
         
+        // Content Presenter
         private ViewModelBase _contentToDisplay;
         public ViewModelBase ContentToDisplay
         {
             get => _contentToDisplay;
             set => this.RaiseAndSetIfChanged(ref _contentToDisplay, value);
         }
-
+        
         public MainWindowViewModel()
         {
             _context = new AppDatabaseContext();
             _dbInit = new DatabaseInit(_context);
-            _dbInit.PopulateDatabaseWithDummyDataAsync();
-            TreeMenuViewModel = new TreeMenuViewModel(_context);
-            LoadShipsAsync();
+            DataAccessRepository = new DataAccessRepository(_context);
             
-            ContentToDisplay = DefaultViewModel; // Set ContentToDisplay to SharedTableViewModel
+            _dbInit.PopulateDatabaseWithDummyDataAsync();
+            LoadShipsAsync().Wait();
+            
+            TreeMenuViewModel = new TreeMenuViewModel(Ships, Engines);
+            ContentToDisplay = DefaultViewModel; // Set ContentToDisplay to DefaultViewModel
         }
-
-        // Load ships and subscribe to engine selection changes
+        
         public async Task LoadShipsAsync()
         {
-            var ships = await TreeMenuViewModel.GetShipsWithEnginesAsync();
-            foreach (var ship in ships)
+            var shipsFromDb = await DataAccessRepository.GetShipsWithEnginesAsync();
+
+            // Convert ships from DB into view models
+            var shipViewModels = shipsFromDb.Select(s => new ShipViewModel(s)).ToList();
+    
+            Ships.AddRange(shipViewModels);
+            _engines = shipViewModels.SelectMany(shipVm => shipVm.EngineViewModels).ToList();
+
+            // Subscribe to the EngineSelectedChanged event
+            foreach (var engineVm in _engines)
             {
-                var shipViewModel = new ShipViewModel(ship);
-                Ships.Add(shipViewModel);
-                foreach (var engineViewModel in shipViewModel.EngineViewModels)
-                {
-                    engineViewModel.EngineSelectedChanged += HandleEngineSelectionChanged;
-                }
+                engineVm.EngineSelectedChanged += HandleEngineSelectionChanged;
             }
         }
-
-
-        // Handles engine selection changes by either adding or removing engine details
+        
         private async void HandleEngineSelectionChanged(object sender, bool isSelected)
         {
             var engineVm = sender as EngineViewModel;
@@ -104,7 +119,7 @@ namespace Engine_Graph_App.ViewModels
                     foreach (var measurementVm in engineDetailToRemove.SelectedCylindersMeasurements)
                     {
                         SharedTableViewModel.RemoveMeasurement(measurementVm);
-                        LineGraphViewModel.RemoveMeasurement(measurementVm); 
+                        LineGraphViewModel.RemoveMeasurement(measurementVm);
                         ScatterGraphViewModel.RemoveMeasurement(measurementVm); 
                     }
                     EngineDataSheets.Remove(engineDetailToRemove);

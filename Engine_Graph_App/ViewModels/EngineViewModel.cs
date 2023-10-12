@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Engine_Graph_App.Models;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Engine_Graph_App.ViewModels;
 
