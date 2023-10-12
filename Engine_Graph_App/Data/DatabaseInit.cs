@@ -53,48 +53,48 @@ public class DatabaseInit
             var measurement2 = new Measurement()
             {
                 Date = DateTime.Now,
-                Pscv = 2.0,
-                TDC = 4.0,
-                Pow = 5.0
+                Pscv = 5.0,
+                TDC = 18.0,
+                Pow = 6.0
             };
             
             var measurement3 = new Measurement
             {
                 Date = DateTime.Now,
-                Pscv = 2.0,
-                TDC = 4.0,
-                Pow = 5.0
+                Pscv = 12.0,
+                TDC = 14.0,
+                Pow = 4.0
             };
             
             var measurement4 = new Measurement
             {
                 Date = DateTime.Now.AddDays(+1),
-                Pscv = 3.0,
-                TDC = 5.0,
+                Pscv = 49.0,
+                TDC = 21.0,
                 Pow = 6.0
             };
             
             var measurement5 = new Measurement
             {
                 Date = DateTime.Now.AddDays(+1),
-                Pscv = 1.5,
+                Pscv = 14.5,
                 TDC = 3.5,
-                Pow = 4.5
+                Pow = 44.5
             };
             
             var measurement6 = new Measurement
             {
                 Date = DateTime.Now.AddDays(+1),
                 Pscv = 1.5,
-                TDC = 3.5,
-                Pow = 4.5
+                TDC = 13.5,
+                Pow = 14.5
             };
             
             var measurement7 = new Measurement()
             {
                 Date = DateTime.Now.AddDays(+2),
-                Pscv = 1.5,
-                TDC = 3.5,
+                Pscv = 11.5,
+                TDC = 13.5,
                 Pow = 4.5
             };
                             
@@ -102,16 +102,16 @@ public class DatabaseInit
             {
                 Date = DateTime.Now.AddDays(+2),
                 Pscv = 1.5,
-                TDC = 3.5,
-                Pow = 4.5
+                TDC = 34.5,
+                Pow = 24.5
                 
             };
             
             var measurement9 = new Measurement()
             {
                 Date = DateTime.Now.AddDays(+2),
-                Pscv = 1.5,
-                TDC = 3.5,
+                Pscv = 7.5,
+                TDC = 8.5,
                 Pow = 4.5
                 
             };
@@ -119,17 +119,17 @@ public class DatabaseInit
             var measurement10 = new Measurement()
             {
                 Date = DateTime.Now.AddDays(+3),
-                Pscv = 1.5,
-                TDC = 3.5,
-                Pow = 4.5
+                Pscv = 21.5,
+                TDC = 9.5,
+                Pow = 14.5
                 
             };
             
             var measurement11 = new Measurement()
             {
                 Date = DateTime.Now.AddDays(+3),
-                Pscv = 1.5,
-                TDC = 3.5,
+                Pscv = 12.5,
+                TDC = 33.5,
                 Pow = 4.5
                 
             };
@@ -137,8 +137,8 @@ public class DatabaseInit
             var measurement12 = new Measurement()
             {
                 Date = DateTime.Now.AddDays(+3),
-                Pscv = 1.5,
-                TDC = 3.5,
+                Pscv = 10.5,
+                TDC = 30.5,
                 Pow = 4.5
                 
             };
@@ -146,17 +146,17 @@ public class DatabaseInit
             var measurement13 = new Measurement()
             {
                 Date = DateTime.Now.AddDays(+3),
-                Pscv = 1.5,
-                TDC = 3.5,
-                Pow = 4.5
+                Pscv = 11.5,
+                TDC = 18.5,
+                Pow = 14.5
                 
             };
             
             var measurement14 = new Measurement()
             {
                 Date = DateTime.Now.AddDays(+3),
-                Pscv = 1.5,
-                TDC = 3.5,
+                Pscv = 14.5,
+                TDC = 13.5,
                 Pow = 4.5
                 
             };
