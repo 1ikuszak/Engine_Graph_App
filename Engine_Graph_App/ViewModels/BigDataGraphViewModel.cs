@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 using LiveChartsCore;
+using LiveChartsCore.Defaults;
 using LiveChartsCore.Drawing;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
@@ -13,7 +14,7 @@ using SkiaSharp;
 
 namespace Engine_Graph_App.ViewModels;
 
-public class LineGraphViewModel : ViewModelBase
+public class BigDataGraphViewModel : ViewModelBase
 {
     private ObservableCollection<MeasurementViewModel> _selectedMeasurements;
     //Used HashSet for quick lookups
@@ -97,7 +98,7 @@ public class LineGraphViewModel : ViewModelBase
         }
     }
     
-    public LineGraphViewModel()
+    public BigDataGraphViewModel()
     {
         _selectedMeasurements = new ObservableCollection<MeasurementViewModel>();
         _selectedMeasurements.CollectionChanged += OnSelectedMeasurementsChanged;
@@ -146,15 +147,22 @@ public class LineGraphViewModel : ViewModelBase
         await Task.Run(() => 
         {
             var seriesList = new List<ISeries>(_selectedMeasurements.Count);
-        
+    
             foreach (var measurement in _selectedMeasurements)
             {
                 if (!_measurementColors.TryGetValue(measurement, out var color)) continue;
-                var yValues = new double[] { measurement.Measurement.Pow, measurement.Measurement.TDC, measurement.Measurement.Pscv };
 
-                seriesList.Add(new LineSeries<double>
+                // Extract the Points data and transform it into X & Y values for the LineSeries
+                var pointValues = measurement.Measurement.Points;
+                var xyValues = new ObservablePoint[pointValues.Count];
+                for (int i = 0; i < pointValues.Count; i++)
                 {
-                    Values = yValues,
+                    xyValues[i] = new ObservablePoint(pointValues[i].X, pointValues[i].Y);
+                }
+
+                seriesList.Add(new LineSeries<ObservablePoint>
+                {
+                    Values = xyValues,
                     Stroke = new SolidColorPaint(color) { StrokeThickness = 2 },
                     Fill = null,
                     GeometryFill = null,
@@ -164,7 +172,7 @@ public class LineGraphViewModel : ViewModelBase
             }
             Series = seriesList.ToArray();
         });
-        
+    
         ((IReactiveObject)this).RaisePropertyChanged(nameof(Series));
     }
 

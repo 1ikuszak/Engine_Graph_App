@@ -12,4 +12,5 @@ public class Measurement
     public double Pscv { get; set; }
     public double TDC { get; set; }
     public double Pow { get; set; }
+    public List<Point> Points { get; set; } = new List<Point>();
 }

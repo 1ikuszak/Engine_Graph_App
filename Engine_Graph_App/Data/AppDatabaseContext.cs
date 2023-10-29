@@ -11,6 +11,7 @@ public class AppDatabaseContext:DbContext
     public DbSet<Engine> Engines { get; set; }
     public DbSet<Cylinder> Cylinders { get; set; }
     public DbSet<Measurement> Measurements { get; set; }
+    // public DbSet<Point> Points { get; set; }
 
     public string DbPath { get; }
 

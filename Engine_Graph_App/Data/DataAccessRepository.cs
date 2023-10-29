@@ -20,6 +20,7 @@ public class DataAccessRepository
             .Include(ship => ship.Engines)
             .ThenInclude(engine => engine.Cylinders)
             .ThenInclude(cylinder => cylinder.Measurements)
+            .ThenInclude(measurement => measurement.Points )
             .ToListAsync();
     }
 }

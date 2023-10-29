@@ -35,6 +35,7 @@ namespace Engine_Graph_App.ViewModels
         public DefaultViewModel DefaultViewModel { get; } = new DefaultViewModel();
         public LineGraphViewModel LineGraphViewModel { get; } = new LineGraphViewModel();
         public ScatterGraphViewModel ScatterGraphViewModel { get; } = new ScatterGraphViewModel();
+        public BigDataGraphViewModel BigDataGraphViewModel { get; } = new BigDataGraphViewModel();
         
         // Content Presenter
         private ViewModelBase _contentToDisplay;
@@ -102,7 +103,7 @@ namespace Engine_Graph_App.ViewModels
                 }
 
                 // Pass the shared TableViewModel instance when creating a new EngineDataSheetViewModel
-                var newEngineDetailsViewModel = new EngineDataSheetViewModel(MeasurementViewModel, newSelectedCylindersMeasurements, SharedTableViewModel, LineGraphViewModel, ScatterGraphViewModel)
+                var newEngineDetailsViewModel = new EngineDataSheetViewModel(MeasurementViewModel, newSelectedCylindersMeasurements, SharedTableViewModel, LineGraphViewModel, ScatterGraphViewModel, BigDataGraphViewModel)
                 {
                     EngineId = engineVm.Engine.EngineId,
                     EngineName = engineVm.Engine.Name
@@ -140,6 +141,11 @@ namespace Engine_Graph_App.ViewModels
         public void ShowScatterGraph()
         {
             ContentToDisplay = ScatterGraphViewModel;
+        }
+        
+        public void BigDataGraph()
+        {
+            ContentToDisplay = BigDataGraphViewModel;
         }
     
         public void ShowTable()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Engine_Graph_App.Models;
@@ -8,12 +9,38 @@ namespace Engine_Graph_App.Data;
 public class DatabaseInit
 {
     private readonly AppDatabaseContext _db;
+    private readonly Random _random = new Random();
 
     public DatabaseInit(AppDatabaseContext db)
     {
         _db = db;
     }
+    
+    public List<Point> GenerateRealisticPoints(int count)
+    {
+        var points = new List<Point>();
+        double frequency = 2 * Math.PI / count; // Adjust to change how many "waves" you get
+        double amplitude = 500; // Adjust the height of the wave
+        double trendSlope = 10; // This will make a linear upward trend. Adjust the slope as necessary.
+        double noiseStrength = 100; // Adjust for how "noisy" you want your data
 
+        for (int i = 0; i < count; i++)
+        {
+            double x = i;
+            double baseY = amplitude * Math.Sin(frequency * x);
+            double noise = (_random.NextDouble() - 0.5) * 2 * noiseStrength; // Random value between -noiseStrength and +noiseStrength
+            double trend = trendSlope * x / count;
+
+            points.Add(new Point
+            {
+                X = x,
+                Y = baseY + noise + trend
+            });
+        }
+
+        return points;
+    }
+    
     public async Task PopulateDatabaseWithDummyDataAsync()
     {
         if (!_db.Ships.Any())
@@ -47,7 +74,8 @@ public class DatabaseInit
                 Date = DateTime.Now,
                 Pscv = 2.0,
                 TDC = 4.0,
-                Pow = 5.0
+                Pow = 5.0,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement2 = new Measurement()
@@ -55,7 +83,8 @@ public class DatabaseInit
                 Date = DateTime.Now,
                 Pscv = 5.0,
                 TDC = 18.0,
-                Pow = 6.0
+                Pow = 6.0,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement3 = new Measurement
@@ -63,7 +92,8 @@ public class DatabaseInit
                 Date = DateTime.Now,
                 Pscv = 12.0,
                 TDC = 14.0,
-                Pow = 4.0
+                Pow = 4.0,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement4 = new Measurement
@@ -71,7 +101,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+1),
                 Pscv = 49.0,
                 TDC = 21.0,
-                Pow = 6.0
+                Pow = 6.0,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement5 = new Measurement
@@ -79,7 +110,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+1),
                 Pscv = 14.5,
                 TDC = 3.5,
-                Pow = 44.5
+                Pow = 44.5,                
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement6 = new Measurement
@@ -87,7 +119,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+1),
                 Pscv = 1.5,
                 TDC = 13.5,
-                Pow = 14.5
+                Pow = 14.5,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement7 = new Measurement()
@@ -95,7 +128,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+2),
                 Pscv = 11.5,
                 TDC = 13.5,
-                Pow = 4.5
+                Pow = 4.5,
+                Points = GenerateRealisticPoints(3600)
             };
                             
             var measurement8 = new Measurement()
@@ -103,8 +137,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+2),
                 Pscv = 1.5,
                 TDC = 34.5,
-                Pow = 24.5
-                
+                Pow = 24.5,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement9 = new Measurement()
@@ -112,8 +146,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+2),
                 Pscv = 7.5,
                 TDC = 8.5,
-                Pow = 4.5
-                
+                Pow = 4.5,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement10 = new Measurement()
@@ -121,8 +155,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+3),
                 Pscv = 21.5,
                 TDC = 9.5,
-                Pow = 14.5
-                
+                Pow = 14.5,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement11 = new Measurement()
@@ -130,8 +164,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+3),
                 Pscv = 12.5,
                 TDC = 33.5,
-                Pow = 4.5
-                
+                Pow = 4.5,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement12 = new Measurement()
@@ -139,8 +173,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+3),
                 Pscv = 10.5,
                 TDC = 30.5,
-                Pow = 4.5
-                
+                Pow = 4.5,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement13 = new Measurement()
@@ -148,8 +182,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+3),
                 Pscv = 11.5,
                 TDC = 18.5,
-                Pow = 14.5
-                
+                Pow = 14.5,
+                Points = GenerateRealisticPoints(3600)
             };
             
             var measurement14 = new Measurement()
@@ -157,8 +191,8 @@ public class DatabaseInit
                 Date = DateTime.Now.AddDays(+3),
                 Pscv = 14.5,
                 TDC = 13.5,
-                Pow = 4.5
-                
+                Pow = 4.5,
+                Points = GenerateRealisticPoints(3600)
             };
             
             

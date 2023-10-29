@@ -20,6 +20,7 @@ namespace Engine_Graph_App.ViewModels
         public TableViewModel TableViewModel { get; }
         public LineGraphViewModel LineGraphViewModel { get; }
         public ScatterGraphViewModel ScatterGraphViewModel { get; }
+        public BigDataGraphViewModel BigDataGraphViewModel { get; }
         private bool _anyMeasurementChecked;
         public bool AnyMeasurementChecked
         {
@@ -40,12 +41,14 @@ namespace Engine_Graph_App.ViewModels
             ObservableCollection<MeasurementViewModel> selectedCylindersMeasurements, 
             TableViewModel tableViewModel,
             LineGraphViewModel lineGraphViewModel,
-            ScatterGraphViewModel scatterGraphViewModel)
+            ScatterGraphViewModel scatterGraphViewModel,
+            BigDataGraphViewModel bigDataGraphViewModel)
         {
             SelectedCylindersMeasurements = selectedCylindersMeasurements;
             TableViewModel = tableViewModel; // Use passed instance instead of creating new
             LineGraphViewModel = lineGraphViewModel;
             ScatterGraphViewModel = scatterGraphViewModel;
+            BigDataGraphViewModel = bigDataGraphViewModel;
         }
         
         // Main grid creation
@@ -176,12 +179,14 @@ namespace Engine_Graph_App.ViewModels
                         TableViewModel.AddMeasurement(relevantMeasurement);
                         LineGraphViewModel.AddMeasurement(relevantMeasurement); 
                         ScatterGraphViewModel.AddMeasurement(relevantMeasurement);
+                        BigDataGraphViewModel.AddMeasurement(relevantMeasurement);
                     }
                     else
                     {
                         TableViewModel.RemoveMeasurement(relevantMeasurement);
                         LineGraphViewModel.RemoveMeasurement(relevantMeasurement); 
                         ScatterGraphViewModel.RemoveMeasurement(relevantMeasurement);
+                        BigDataGraphViewModel.RemoveMeasurement(relevantMeasurement);
                     }
                 }
             }

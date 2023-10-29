@@ -58,6 +58,12 @@
                             <TextBlock Text="Line Graph"/>
                         </StackPanel>
                     </Button>
+                    <Button Command="{Binding BigDataGraph}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <i:Icon Value="mdi-database-alert"/>
+                            <TextBlock Text="BigData Graph"/>
+                        </StackPanel>
+                    </Button>
                     <Button Command="{Binding ShowScatterGraph}">
                         <StackPanel Orientation="Horizontal" Spacing="6">
                             <i:Icon Value="mdi-chart-scatter-plot"/>

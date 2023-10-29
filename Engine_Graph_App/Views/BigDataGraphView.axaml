@@ -5,13 +5,14 @@
              xmlns:avalonia="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
              xmlns:viewModels="clr-namespace:Engine_Graph_App.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Engine_Graph_App.Views.LineGraphView"
-             x:DataType="viewModels:LineGraphViewModel">
-
+             x:Class="Engine_Graph_App.Views.BigDataGraphView"
+             x:DataType="viewModels:BigDataGraphViewModel">
+    
     <avalonia:CartesianChart Series="{Binding Series}" ZoomMode="X"
                              XAxes="{Binding XAxes}"
                              YAxes="{Binding YAxes}"
                              LegendPosition="Bottom"
                              LegendTextSize="12"
-                             LegendTextPaint="{Binding LegendTextPaint}"/>
+                             LegendTextPaint="{Binding LegendTextPaint}"
+                             AnimationsSpeed="0:0:0.0" />
 </UserControl>
