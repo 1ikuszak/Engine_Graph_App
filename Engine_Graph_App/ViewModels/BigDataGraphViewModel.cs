@@ -187,70 +187,70 @@ public class BigDataGraphViewModel : ViewModelBase
     }
     
     private List<ObservablePoint> DouglasPeuckerReduction(List<ObservablePoint> points, double tolerance)
-{
-    if (points == null || points.Count < 3) return points;
-
-    int firstPoint = 0;
-    int lastPoint = points.Count - 1;
-    var pointIndexsToKeep = new List<int>();
-
-    pointIndexsToKeep.Add(firstPoint);
-    pointIndexsToKeep.Add(lastPoint);
-
-    DouglasPeuckerReduction(points, firstPoint, lastPoint, tolerance, ref pointIndexsToKeep);
-
-    var returnPoints = new List<ObservablePoint>();
-    pointIndexsToKeep.Sort();
-    foreach (int index in pointIndexsToKeep)
     {
-        returnPoints.Add(points[index]);
-    }
-    return returnPoints;
-}
+        if (points == null || points.Count < 3) return points;
 
-private void DouglasPeuckerReduction(List<ObservablePoint> points, int firstPoint, int lastPoint, double tolerance, ref List<int> pointIndexsToKeep)
-{
-    double maxDistance = 0;
-    int indexFarthest = 0;
+        int firstPoint = 0;
+        int lastPoint = points.Count - 1;
+        var pointIndexsToKeep = new List<int>();
 
-    for (int index = firstPoint; index < lastPoint; index++)
-    {
-        double distance = PerpendicularDistance(points[index], points[firstPoint], points[lastPoint]);
-        if (distance > maxDistance)
+        pointIndexsToKeep.Add(firstPoint);
+        pointIndexsToKeep.Add(lastPoint);
+
+        DouglasPeuckerReduction(points, firstPoint, lastPoint, tolerance, ref pointIndexsToKeep);
+
+        var returnPoints = new List<ObservablePoint>();
+        pointIndexsToKeep.Sort();
+        foreach (int index in pointIndexsToKeep)
         {
-            maxDistance = distance;
-            indexFarthest = index;
+            returnPoints.Add(points[index]);
+        }
+        return returnPoints;
+    }
+
+    private void DouglasPeuckerReduction(List<ObservablePoint> points, int firstPoint, int lastPoint, double tolerance, ref List<int> pointIndexsToKeep)
+    {
+        double maxDistance = 0;
+        int indexFarthest = 0;
+
+        for (int index = firstPoint; index < lastPoint; index++)
+        {
+            double distance = PerpendicularDistance(points[index], points[firstPoint], points[lastPoint]);
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+                indexFarthest = index;
+            }
+        }
+
+        if (maxDistance > tolerance && indexFarthest != 0)
+        {
+            pointIndexsToKeep.Add(indexFarthest);
+            DouglasPeuckerReduction(points, firstPoint, indexFarthest, tolerance, ref pointIndexsToKeep);
+            DouglasPeuckerReduction(points, indexFarthest, lastPoint, tolerance, ref pointIndexsToKeep);
         }
     }
 
-    if (maxDistance > tolerance && indexFarthest != 0)
+    private double PerpendicularDistance(ObservablePoint point, ObservablePoint lineStart, ObservablePoint lineEnd)
     {
-        pointIndexsToKeep.Add(indexFarthest);
-        DouglasPeuckerReduction(points, firstPoint, indexFarthest, tolerance, ref pointIndexsToKeep);
-        DouglasPeuckerReduction(points, indexFarthest, lastPoint, tolerance, ref pointIndexsToKeep);
+        if (!point.X.HasValue || !point.Y.HasValue ||
+            !lineStart.X.HasValue || !lineStart.Y.HasValue ||
+            !lineEnd.X.HasValue || !lineEnd.Y.HasValue)
+        {
+            throw new InvalidOperationException("One or more points do not have a valid X or Y value.");
+        }
+
+        double areaValue = 0.5 * (lineStart.X.Value * lineEnd.Y.Value + lineEnd.X.Value * point.Y.Value +
+                                  point.X.Value * lineStart.Y.Value - lineEnd.X.Value * lineStart.Y.Value -
+                                  point.X.Value * lineEnd.Y.Value - lineStart.X.Value * point.Y.Value);
+        
+        double area = Math.Abs(areaValue);
+
+        double bottom = Math.Sqrt(Math.Pow(lineStart.X.Value - lineEnd.X.Value, 2) +
+                                  Math.Pow(lineStart.Y.Value - lineEnd.Y.Value, 2));
+        
+        return (area / bottom * 2);
     }
-}
-
-private double PerpendicularDistance(ObservablePoint point, ObservablePoint lineStart, ObservablePoint lineEnd)
-{
-    if (!point.X.HasValue || !point.Y.HasValue ||
-        !lineStart.X.HasValue || !lineStart.Y.HasValue ||
-        !lineEnd.X.HasValue || !lineEnd.Y.HasValue)
-    {
-        throw new InvalidOperationException("One or more points do not have a valid X or Y value.");
-    }
-
-    double areaValue = 0.5 * (lineStart.X.Value * lineEnd.Y.Value + lineEnd.X.Value * point.Y.Value +
-                              point.X.Value * lineStart.Y.Value - lineEnd.X.Value * lineStart.Y.Value -
-                              point.X.Value * lineEnd.Y.Value - lineStart.X.Value * point.Y.Value);
-    
-    double area = Math.Abs(areaValue);
-
-    double bottom = Math.Sqrt(Math.Pow(lineStart.X.Value - lineEnd.X.Value, 2) +
-                              Math.Pow(lineStart.Y.Value - lineEnd.Y.Value, 2));
-    
-    return (area / bottom * 2);
-}
 
 
 
