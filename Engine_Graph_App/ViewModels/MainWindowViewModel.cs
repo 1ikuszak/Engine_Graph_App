@@ -122,6 +122,8 @@ namespace Engine_Graph_App.ViewModels
                         SharedTableViewModel.RemoveMeasurement(measurementVm);
                         LineGraphViewModel.RemoveMeasurement(measurementVm);
                         ScatterGraphViewModel.RemoveMeasurement(measurementVm); 
+                        BigDataGraphViewModel.RemoveMeasurement(measurementVm); 
+
                     }
                     EngineDataSheets.Remove(engineDetailToRemove);
                     // After removing, check if no engines are selected, if so, set to default view
